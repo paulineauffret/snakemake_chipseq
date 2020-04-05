@@ -1,6 +1,7 @@
 rule download_sra_data:
     output:
-        sra="/home/pauline/ncbi/public/sra/{name}.sra"
+        #"/home/pauline/ncbi/public/sra/{name}.sra"
+        "{sra_path}/{name}.sra"
     params:
         "{name}"
     log:

@@ -1,8 +1,12 @@
-report : "workflow.rst"
+import pandas as pd
 
 include: "rules/getdata.smk"
 
+configfile: "config.yml"
+
+SRA_ID=pd.read_table("sra_id.tsv")['id']
+
 rule all:
     input:
-        "/home/pauline/ncbi/public/sra/DRR218951.sra"
+        expand("{sra_directory}/{sra_run_id}.sra", sra_directory=config['sra']['sra_directory'], sra_run_id=SRA_ID)
 
